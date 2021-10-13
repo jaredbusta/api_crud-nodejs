@@ -16,8 +16,8 @@ router.post('/',(req,res)=>{
 
 });
 
-router.get('/',(req, res)=>{
-  res.json( service.find() )
+router.get('/', async (req, res) => {
+    res.json(await service.find())
 });
 router.get('/:id',(req, res)=>{
     const {id} = req.params;
