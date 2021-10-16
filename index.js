@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require( 'cors');
 const routerApi = require("./routes");
-const {logErrors, errorHandler, boomErrorHandler} = require('./middleware/error.handler')
+const {logErrors, errorHandler, boomErrorHandler, ormErrorHandler} = require('./middleware/error.handler')
 
 
 const app = express();
@@ -31,6 +31,7 @@ app.get('/',(req, res)=>{
 
 routerApi(app);
 app.use(logErrors); // implementa middleware
+app.use(ormErrorHandler); // implementa middleware de captura de errores del ORM
 app.use(boomErrorHandler); // implementa middleware
 app.use(errorHandler); // implementa middleware
 
